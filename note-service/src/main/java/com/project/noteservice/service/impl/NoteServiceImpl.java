@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NoteServiceImpl implements NoteService {
@@ -20,5 +21,9 @@ public class NoteServiceImpl implements NoteService {
 
     public Note save(Note note){
         return noteRepository.save(note);
+    }
+
+    public Note findById(String id){
+        return noteRepository.findById(id).get();
     }
 }

@@ -3,10 +3,7 @@ package com.project.noteservice.controller;
 import com.project.noteservice.entity.Note;
 import com.project.noteservice.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,11 @@ public class NoteController {
     public Note saveNote(@RequestBody Note note){
 
         return noteService.save(note);
+    }
+
+    @PostMapping("/note/{id}")
+    public Note updateNote(@RequestBody Note note,@PathVariable("id") String id){
+        Note oldNote = noteService.findById(id);
+
     }
 }

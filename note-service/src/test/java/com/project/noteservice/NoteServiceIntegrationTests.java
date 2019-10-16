@@ -30,5 +30,9 @@ public class NoteServiceIntegrationTests {
 		mockMvc.perform(post("/note").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().is2xxSuccessful());
 	}
 
+	public void testUpdateNote() throws Exception{
+        String json = "{\"noteContent\":\"Example Note\",\"userId\":\"0\"}";
+        mockMvc.perform(post("/note/5da79c21fe36a2129db664ef").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().is2xxSuccessful());
+    }
 
 }
