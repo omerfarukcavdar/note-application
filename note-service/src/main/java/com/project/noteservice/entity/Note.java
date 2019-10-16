@@ -11,12 +11,15 @@ import javax.persistence.Id;
 public class Note {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int noteId;
+    private String id;
 
     private String noteContent;
 
-    private int userId;
+    private String userId;
+
+    public String getId() {
+        return id;
+    }
 
     public String getNoteContent() {
         return noteContent;
@@ -26,15 +29,15 @@ public class Note {
         this.noteContent = noteContent;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Note(String noteContent, int userId) {
+    public Note(String noteContent, String userId) {
         this.noteContent = noteContent;
         this.userId = userId;
     }
