@@ -25,8 +25,8 @@ public class NoteServiceIntegrationTests {
 
 	@Test
 	public void testCreateNote() throws Exception {
-		String json = "{\"note\":\"Example Note\",\"userId\":0}";
-		mockMvc.perform(post("note").content(json)).andExpect(status().is2xxSuccessful());
+		String json = "{\"noteContent\":\"Example Note\",\"userId\":0}";
+		mockMvc.perform(post("notes").content(json)).andExpect(status().is2xxSuccessful());
 	}
 
 
