@@ -12,4 +12,6 @@ public interface NoteService {
     Note save(Note note);
 
     Note findById(String id);
+
+    Note update(Note note);
 }

@@ -26,7 +26,7 @@ public class NoteController {
 
     @PostMapping("/note/{id}")
     public Note updateNote(@RequestBody Note note,@PathVariable("id") String id){
-        Note oldNote = noteService.findById(id);
-
+        note.setId(id);
+        return noteService.update(note);
     }
 }

@@ -26,4 +26,8 @@ public class NoteServiceImpl implements NoteService {
     public Note findById(String id){
         return noteRepository.findById(id).get();
     }
+
+    public Note update(Note note){
+        return noteRepository.save(note);
+    }
 }
