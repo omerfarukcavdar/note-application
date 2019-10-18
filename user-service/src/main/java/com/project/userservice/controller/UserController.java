@@ -4,7 +4,6 @@ import com.project.userservice.entity.User;
 import com.project.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

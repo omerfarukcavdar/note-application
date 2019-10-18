@@ -9,8 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.ArgumentMatchers.contains;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.hamcrest.core.StringContains.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -37,7 +36,7 @@ public class UserServiceApplicationTests {
 	@Test
 	public void testFindUserById() throws Exception{
 		String expected = "{\"id\":\"5da7bc0dfe36a2299ddc91f8\",\"name\":\"Omer\",\"email\":\"o.f.cavdar10@gmail.com\"}";
-		mockMvc.perform(get("/user/5da7bc0dfe36a2299ddc91f8").contentType(MediaType.APPLICATION_JSON)).andExpect(content().string(eq(expected)));
+		mockMvc.perform(get("/user/5da7bc0dfe36a2299ddc91f8").contentType(MediaType.APPLICATION_JSON)).andExpect(content().string(containsString(expected)));
 	}
 
 }
