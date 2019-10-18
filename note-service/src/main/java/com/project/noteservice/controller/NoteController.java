@@ -3,8 +3,9 @@ package com.project.noteservice.controller;
 import com.project.noteservice.dto.UserDto;
 import com.project.noteservice.entity.Note;
 import com.project.noteservice.service.NoteService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -31,8 +32,11 @@ public class NoteController {
                 ("http://localhost:8001/user/{id}",
                         UserDto.class,userId);
 
-        if(responseEntity.hasBody())
+        if(responseEntity.hasBody()) {
+            String email = responseEntity.getBody().getEmail();
+            ResponseEntity<Boolean> response = new RestTemplate().getForEntity("http://localhost:8002/email/{email}",Boolean.class,email);
             return noteService.save(note);
+        }
         else
             return null;
     }
@@ -40,6 +44,17 @@ public class NoteController {
     @PostMapping("/note/{id}")
     public Note updateNote(@RequestBody Note note,@PathVariable("id") String id){
         note.setId(id);
-        return noteService.update(note);
+        String userId = note.getUserId();
+        ResponseEntity<UserDto> responseEntity = new RestTemplate().getForEntity
+                ("http://localhost:8001/user/{id}",
+                        UserDto.class,userId);
+
+        if(responseEntity.hasBody()) {
+            String email = responseEntity.getBody().getEmail();
+            ResponseEntity<Boolean> response = new RestTemplate().getForEntity("http://localhost:8002/email/{email}",Boolean.class,email);
+            return noteService.save(note);
+        }
+        else
+            return null;
     }
 }
