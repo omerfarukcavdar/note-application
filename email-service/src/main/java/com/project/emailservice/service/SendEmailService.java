@@ -11,13 +11,13 @@ public class SendEmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    void sendEmail() {
+    public void sendEmail(String email) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("o.f.cavdar10@gmail.com", "mihrinurgrn@gmail.com");
+        msg.setTo(email);
 
         msg.setSubject("Note");
-        msg.setText("Your note has been changed");
+        msg.setText("Note notification");
 
         javaMailSender.send(msg);
 
